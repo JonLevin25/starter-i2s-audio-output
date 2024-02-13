@@ -9,13 +9,13 @@ x(b) @i2s_config convert to class
 x(b) @play_from_sd.hpp use `i2s_config.h`
 x(b) @play_from_sd.hpp make into class with `.start(const char *filename)` and `.stop()`
 
-(b) @spiffs_audio.hpp copy from examples/play_from_sd
-(b) @spiffs_audio.hpp adjust to play from spiffs
+x(b) @spiffs_audio.hpp copy from examples/play_from_sd
+x(b) @spiffs_audio.hpp adjust to play from spiffs
 
-(A) Test on banana harness
+x(A) Test on banana harness
 =========================================================
-(b) @test find audio file to test
-(b) @test burn firmware + test
+x(b) @test find audio file to test
+x(b) @test burn firmware + test
 
 
 (C) Commit + change repo name (starter_i2s_audio_amplifier)
@@ -38,3 +38,8 @@ x(b) @play_from_sd.hpp make into class with `.start(const char *filename)` and `
 (A) FINAL PROFILING (Audio+Leds)
 =========================================================
 (a) TODO: plan
+
+
+(A) Audio fixes?
+=========================================================
+(b) Debug terrible distortion?
