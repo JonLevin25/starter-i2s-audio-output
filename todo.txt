@@ -1,0 +1,40 @@
+x(A) Simple setup (no remote debug)
+=========================================================
+x(b) @i2s_config `.h` + `.cpp`
+x(b) @i2s_config expose MDCallback
+x(b) @i2s_config convert to class
+
+(A) File system (SPIFFs) test - examples/spiffs_audio.h
+=========================================================
+(b) @play_from_sd.hpp use `i2s_config.h`
+(b) @play_from_sd.hpp make into class with `.start(const char *filename)` and `.stop()`
+
+(b) @spiffs_audio.hpp copy from examples_play_from_sd.hpp
+(b) @spiffs_audio.hpp adjust to play from spiffs
+
+(A) Test on banana harness
+=========================================================
+(b) @test find audio file to test
+(b) @test burn firmware + test
+
+
+(C) Commit + change repo name (starter_i2s_audio_amplifier)
+
+(A) SD card test
+=========================================================
+(c) @debug try get remote debug working
+(c) @debug test remote debug working (no usb connected)
+
+(b) @sd test with sd card module
+(b) @sd solder sd module with resistors like my design
+(b) @sd test my sd module
+
+
+(A) Leds test
+=========================================================
+(b) @leds config led strips, test working
+(b) @leds downgrade to single led, test working
+
+(A) FINAL PROFILING (Audio+Leds)
+=========================================================
+(a) TODO: plan
