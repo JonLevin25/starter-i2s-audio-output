@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
-#include "examples/play_from_spiffs.h"
+// #include "examples/play_from_spiffs.h"
+#include "examples/play_from_sd.h"
 #include "i2s_output_config.h"
 
 // Pins
@@ -10,6 +11,10 @@
 
 // Example file from https://freesound.org/people/vquesada/sounds/489515/
 #define MP3_BELL "/mccathran-hall-bell.mp3"
+
+// Example file from https://freesound.org/people/Dredile/sounds/441832/
+// (too big for SPIFFS)
+#define MP3_AMBIENCE_AUTUMN "/ambience-autumn-solitude-a-cutflower-sound.mp3"
 
 Simple_I2S_Output i2s_output;
 
@@ -22,7 +27,12 @@ void setup() {
     i2s_output.set_bits_per_sample(I2S_BITS_PER_SAMPLE_16BIT);
     i2s_output.install();
 
-    setup_ex_audio_from_spiffs(&i2s_output, MP3_BELL);
+    // TODO: why is this so FKIN LOUD?!
+    // setup_ex_audio_from_spiffs(&i2s_output, MP3_BELL);
+    setup_ex_audio_from_sd(&i2s_output, MP3_AMBIENCE_AUTUMN);
 }
 
-void loop() { loop_ex_audio_from_spiffs(); }
+void loop() {
+    // loop_ex_audio_from_spiffs();
+    loop_ex_audio_from_sd();
+}

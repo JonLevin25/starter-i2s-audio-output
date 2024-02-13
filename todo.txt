@@ -18,7 +18,7 @@ x(b) @test find audio file to test
 x(b) @test burn firmware + test
 
 
-(C) Commit + change repo name (starter_i2s_audio_amplifier)
+x(C) Commit + change repo name (starter_i2s_audio_amplifier)
 
 (A) SD card test
 =========================================================

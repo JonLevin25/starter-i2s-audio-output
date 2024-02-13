@@ -96,7 +96,7 @@ static void stop_audio() {
 }
 
 // Called when a metadata event occurs (i.e. an ID3 tag, an ICY block, etc.)
-static void metadataCb(void *cbData, const char *type, bool isUnicode,
+static void metadataCB(void *cbData, const char *type, bool isUnicode,
                        const char *string) {
     (void)cbData;
     Serial.printf("ID3 callback for: %s = '", type);
