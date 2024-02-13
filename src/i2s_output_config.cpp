@@ -1,5 +1,3 @@
-#pragma once
-
 #include "i2s_output_config.h"
 
 #include <Arduino.h>
@@ -7,18 +5,20 @@
 #include "driver/i2s.h"
 
 void Simple_I2S_Output::install() {
-    if (!is_init) {
+    if (!_is_init) {
         Serial.println(
             "Simple_I2S_Output was not not initialized before calling "
             "install()!");
         return;
     }
 
+    _is_installed = true;
+
     auto mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_TX);
     i2s_config_t i2s_config = {
         .mode = mode,
-        .sample_rate = sample_rate,
-        .bits_per_sample = bits_per_sample,
+        .sample_rate = _sample_rate,
+        .bits_per_sample = _bits_per_sample,
         .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
         .communication_format = I2S_COMM_FORMAT_STAND_I2S,
         .intr_alloc_flags =
@@ -30,33 +30,11 @@ void Simple_I2S_Output::install() {
     };
 
     static const i2s_pin_config_t pin_config = {
-        .bck_io_num = pin_bclk,
-        .ws_io_num = pin_ws,
-        .data_out_num = pin_data_in,
+        .bck_io_num = _pin_bclk,
+        .ws_io_num = _pin_ws,
+        .data_out_num = _pin_data_in,
         .data_in_num = I2S_PIN_NO_CHANGE};
 
-    i2s_driver_install(i2s_num, &i2s_config, 0, NULL);
-    i2s_set_pin(i2s_num, &pin_config);
-}
-
-// Called when a metadata event occurs (i.e. an ID3 tag, an ICY block, etc.
-void Simple_I2S_Output::i2s_metadata_callback(void *cbData, const char *type,
-                                              bool isUnicode,
-                                              const char *string) {
-    (void)cbData;
-    Serial.printf("ID3 callback for: %s = '", type);
-
-    if (isUnicode) {
-        string += 2;
-    }
-
-    while (*string) {
-        char a = *(string++);
-        if (isUnicode) {
-            string++;
-        }
-        Serial.printf("%c", a);
-    }
-    Serial.printf("'\n");
-    Serial.flush();
+    i2s_driver_install(_i2s_num, &i2s_config, 0, NULL);
+    i2s_set_pin(_i2s_num, &pin_config);
 }
